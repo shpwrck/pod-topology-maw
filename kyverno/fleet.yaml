@@ -1,0 +1,4 @@
+namespace: kyverno
+helm: 
+  repo: https://kyverno.github.io/kyverno/
+  chart: kyverno

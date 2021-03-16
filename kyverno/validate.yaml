@@ -1,0 +1,21 @@
+apiVersion: kyverno.io/v1
+kind: ClusterPolicy
+metadata:
+  name: enforce-pod-topology
+spec:
+  validationFailureAction: audit
+  rules:
+  - name: enforce-default-pod-topology-on-deployments 
+    match:
+      resources:
+        kinds:
+        - Deployment
+    validate:
+      message: "You must define a topology Spread Constraint"
+      pattern:
+        spec:
+          template:
+            spec:
+              topologySpreadConstraints:
+              - topologyKey: "*"
+
